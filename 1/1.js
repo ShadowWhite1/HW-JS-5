@@ -1,21 +1,16 @@
-'use strict'
+const elementTimer = document.getElementById("timer");
 
-let timer = document.getElementById('timer');
-let currentTime = timer.textContent;
+    let n = Number(elementTimer.innerText);   
+        console.log('n = ' + n);
+   
+        countdown = setInterval(() => {       
+            let currentTimer = (n - 1);
+            timer.textContent = currentTimer; 
+            n--;
+            if (n <= 0) {
+            clearInterval(countdown);         
+            alert('Вы победили в конкурсе!');
+            window.location.assign("for_download_example.txt"); 
+            }
+        }, 1000);
 
-setInterval(() => {
-    
-    if (timer.textContent === '00:00:00') {
-        alert('Вы победили в конкурсе!');
-        return;
-    };
-
-    let seconds = currentTime % 60;
-    let minutes = Math.floor(currentTime / 60);
-    let hours = Math.floor(currentTime / 3600);
-
-    timer.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
-    currentTime = +currentTime - 1;
-
-}, 1000);
